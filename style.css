@@ -35,16 +35,29 @@
   font-family: "Creepster", cursive;
 } */
 .container {
-  width: 650px;
+  /* width: 650px; */
   margin: auto;
+  display: flex;
 }
-
+.main-left {
+  width: 70vw;
+  flex: 0.7;
+}
+.main-right {
+  margin: 0 20px;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  flex: 0.3;
+  background-color: #242f41;
+}
 .chat-heading {
   background-color: var(--dracula-black);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .title {
@@ -64,15 +77,19 @@
   width: 40px;
 }
 
-.btn-help {
+.btn {
   border-radius: 5px;
-  background-color: var(--dracula-yellow);
-  padding: 10px 0px;
+  margin: 0 10px;
+  padding: 10px;
   text-align: center;
-  width: 40px;
+  width: 80px;
+  font-size: 1.5rem;
   box-shadow: 0.5px 0.5px 1px var(--dracula-dark-black);
   font-family: "Creepster", cursive;
-  /* position: absolute; */
+}
+
+.btn-help {
+  background-color: var(--dracula-yellow);
 }
 
 span.dracula-red {
@@ -95,6 +112,7 @@ body {
   /* justify-content: center;
   align-items: center; */
   overflow: hidden;
+  position: relative;
 }
 
 .name {
@@ -111,22 +129,33 @@ body {
 }
 p.name {
   cursor: pointer;
+  position: absolute;
+  left: 10px;
 }
 
 .video-grid {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: grid;
-  grid-template-columns: repeat(2, 300px);
-  gap: 50px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
   justify-content: center;
+  margin-left: 20px;
 }
 
 .video {
   width: 100%;
-  height: 300px;
+  /* height: 300px;
+   */
+  height: 35vh;
   object-fit: cover;
   border-radius: 10px;
   border: solid 5px var(--dracula-green);
+}
+
+.video-btn-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .add-user {
@@ -136,6 +165,57 @@ p.name {
   padding: 8px 20px;
   margin: 0 10px;
   color: var(--dracula-dark-black);
+}
+
+.chat-window {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+.message > b {
+  color: #eeeeee;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.message > b > i {
+  margin-right: 0.7rem;
+  font-size: 1.5rem;
+}
+
+.message > span {
+  background-color: #eeeeee;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.message-container {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-container > input {
+  height: 50px;
+  flex: 1;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding-left: 20px;
+  border: none;
 }
 
 #input-msg:focus {
@@ -276,7 +356,7 @@ h3.inline {
   }
 
   .video-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
 

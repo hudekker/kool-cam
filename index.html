@@ -13,18 +13,36 @@
 </head>
 
 <body>
+  <div class="chat-heading">
+    <h1 class="title" id="title">Kool . Cam</h1>
+  </div>
   <div class="container">
-
-    <div class="chat-heading">
-      <!-- <div class="top-line"> -->
-      <button id="btn-menu" class="btn-menu"><i class="fa-solid fa-bars"></i></button>
-      <h1 class="title" id="title">Kool . Cam</h1>
-      <button id="btn-help" class="btn-help">?</button>
-      <!-- <button id="btn-add-user" class="add-user">Call</button> -->
-      <!-- </div> -->
+    <div class="main-left">
+      <div id="video-grid" class="video-grid"></div>
+      <div class="video-btn-group">
+        <button id="stopVideo" class="btn">
+          <i class="fa fa-video-camera"></i>
+        </button>
+        <button id="muteButton" class="btn">
+          <i class="fa fa-microphone"></i>
+        </button>
+        <button id="showChat" class="btn">
+          <i class="fa fa-comment"></i>
+        </button>
+        <button id="btn-help" class="btn btn-help">?</button>
+      </div>
     </div>
-
-    <div id="video-grid" class="video-grid"></div>
+    <div class="main-right">
+      <div class="chat-window">
+        <div class="messages"></div>
+      </div>
+      <div class="message-container">
+        <input id="chat-message" type="text" autocomplete="off" placeholder="Type message here...">
+        <button id="send" class="btn">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- popup modal for help-->
