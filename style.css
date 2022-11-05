@@ -124,6 +124,7 @@
   box-shadow: 0.5px 0.5px 1px var(--dracula-dark-black);
   font-family: "Creepster", cursive;
   background-color: var(--dracula-orange);
+  color: var(--dracula-black)
 }
 
 /* .btn-help {
