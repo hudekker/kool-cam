@@ -28,16 +28,15 @@ if (boolRefresh) {
     controls: true,
   });
 
+  myNickname = prompt("Enter your name");
+
   if (boolHost) {
-    myNickname = "Host";
     peers.push({ id: myPeer.id, nickname: myNickname, order: 0, host: true });
   }
 
   addVideoElement(myPeer.id, myStream);
 
   updateHelpModalText();
-
-  const user = prompt("Enter your name");
 
   // Partners initiate request to host
   // think about a timeout loop every 3 seconds if ptnr arrives before host?

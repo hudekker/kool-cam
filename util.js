@@ -125,11 +125,12 @@ const addVideoElement = (peerId, stream) => {
   p.classList.add("name");
 
   if (peerId == hostId) {
-    p.innerHTML = `<i class="fa-solid fa-ghost"></i> <span class='nickname'>Host</span>`;
+    p.innerHTML = `<i class="fa-solid fa-ghost"></i> <span class='nickname'>${myNickname}</span>`;
   } else {
     // p.innerHTML = `<i class="fa-solid fa-user-secret"></i> Person #${numUser}`;
     let nickname = getNickname(peers, peerId);
-    nickname = nickname ? nickname : `Friend ${numOrder}`;
+    nickname = nickname ? nickname : myNickname;
+    // nickname = nickname ? nickname : `Friend ${numOrder}`;
 
     p.innerHTML = `<i class="fa-solid fa-user"></i> <span class='nickname'>${nickname}</span>`;
   }
@@ -256,11 +257,7 @@ const sendDataRequest = async (myPeer, ptnrId) => {
 // Connect to the host
 const sendVideoRequest = (myPeer, ptnrPeerId, metadata = "partner nickname") => {
   // Get the call object
-  const call = myPeer.call(ptnrPeerId, myStream, { metadata: metadata });
-
-  // if (metadata === "refresh") {
-  //   calls = [...calls.filter((el) => el.peer != myPeer.id)];
-  // }
+  const call = myPeer.call(ptnrPeerId, myStream, { metadata: myNickname });
 
   calls.push(call);
 
@@ -279,7 +276,8 @@ const receiveVideoRequest = (call) => {
   // partner Peer Id
   const ptnrPeerId = call.peer;
   let orderNum = peers.length;
-  let ptnrNickname = `Friend ${orderNum}`;
+  // let ptnrNickname = `Friend ${orderNum}`;
+  let ptnrNickname = call.metadata;
 
   // The host keeps track of peers, this is sent by host to peers on data requests
   if (boolHost) {

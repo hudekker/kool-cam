@@ -51,12 +51,13 @@ const handleModalVideoOpen = (event) => {
   // Prepopulate the name
   let boolMe = clickPeerId === myPeer.id ? true : false;
 
-  myNickname = document.querySelector(`div[data-peer-id="${clickPeerId}"] span`).innerText;
-  document.querySelector("#my-nickname").value = myNickname;
-  modalVideo.classList.remove("modal-hide");
-  document.querySelector("#my-nickname").focus();
+  // myNickname = document.querySelector(`div[data-peer-id="${clickPeerId}"] span`).innerText;
+  // document.querySelector("#my-nickname").value = myNickname;
 
-  document.querySelector("#my-nickname").disabled = !boolMe;
+  modalVideo.classList.remove("modal-hide");
+  // document.querySelector("#my-nickname").focus();
+
+  // document.querySelector("#my-nickname").disabled = !boolMe;
 
   // Show the current speaker state
   let video = document.querySelector(`video[data-peer-id='${clickPeerId}']`);
