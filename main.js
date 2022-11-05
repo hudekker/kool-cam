@@ -67,20 +67,13 @@ if (boolRefresh) {
   backBtn.addEventListener("click", () => {
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
-
-    // document.querySelector(".main-left").style.display = "flex";
-    // document.querySelector(".main-left").style.flex = "1";
-    // document.querySelector(".main-right").style.display = "none";
-    document.querySelector(".header-back").style.display = "none";
+    document.querySelector(".header-back").classList.toggle("display-none");
   });
 
   showChat.addEventListener("click", () => {
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
-    // document.querySelector(".main-right").style.display = "flex";
-    // document.querySelector(".main-right").style.flex = "1";
-    // document.querySelector(".main-left").style.display = "none";
-    document.querySelector(".header-back").style.display = "block";
+    document.querySelector(".header-back").classList.toggle("display-none");
   });
 
   // Modals

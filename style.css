@@ -27,6 +27,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+.display-none {
+  display: none;
+}
+
 .header {
   display: flex;
   justify-content: center;
@@ -42,8 +46,10 @@
 }
 
 .header-back {
-  color: white;
-  display: none;
+  color: var(--dracula-green);
+  font-size: 2rem;
+  margin-right: 10px;
+  font-family: "Creepster", cursive;
 }
 
 /* h1 {
@@ -58,7 +64,7 @@
   margin: auto;
   display: flex;
   width: 100vw;
-  height: 90vh;
+  /* height: 90vh; */
 }
 
 .main-left {
@@ -94,6 +100,7 @@
   text-align: center;
   margin: 0;
   padding: 10px;
+  font-size: 3rem;
   /* width: 100%; */
   color: var(--dracula-pink);
   font-family: "Creepster", cursive;
@@ -116,11 +123,12 @@
   font-size: 1.5rem;
   box-shadow: 0.5px 0.5px 1px var(--dracula-dark-black);
   font-family: "Creepster", cursive;
+  background-color: var(--dracula-orange);
 }
 
-.btn-help {
+/* .btn-help {
   background-color: var(--dracula-yellow);
-}
+} */
 
 span.dracula-red {
   color: var(--dracula-red);
@@ -425,9 +433,9 @@ h3.inline {
     height: 40vh;
   }
 
-  .container {
+  /* .container {
     width: 90vw;
-  }
+  } */
 
   #show-chat {
     display: flex;
@@ -454,5 +462,22 @@ h3.inline {
   .box:nth-last-child(n + 4)~.box .video {
     width: 40vw;
     height: 40vh;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .main-right {
+    margin: 0;
+  }
+
+  .btn {
+    margin: 0 5px;
+    padding: 5px;
+  }
+
+  .message-container>input {
+    height: 40px;
   }
 }
