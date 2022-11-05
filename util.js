@@ -270,10 +270,10 @@ const sendVideoRequest = (myPeer, ptnrPeerId, metadata = "partner nickname") => 
   });
 };
 
-const receiveDataRequest = async (conn) => {
-  // Keep this event listener open, will receive data multiple times
-  await handleDataEvents(conn);
-};
+// const receiveDataRequest = async (conn) => {
+//   // Keep this event listener open, will receive data multiple times
+//   await handleDataEvents(conn);
+// };
 
 const receiveVideoRequest = (call) => {
   // partner Peer Id
@@ -281,7 +281,7 @@ const receiveVideoRequest = (call) => {
   let orderNum = peers.length;
   let ptnrNickname = `Friend ${orderNum}`;
 
-  // Keep track of peers, this is sent by host to peers on data requests
+  // The host keeps track of peers, this is sent by host to peers on data requests
   if (boolHost) {
     peers = peers.filter((el) => el.id != ptnrPeerId);
     peers.push({ id: ptnrPeerId, nickname: ptnrNickname, order: orderNum, host: false });
@@ -290,7 +290,7 @@ const receiveVideoRequest = (call) => {
   // Answer the call and give them your stream
   call.answer(myStream);
 
-  // peerjs on event 'stream', partner peer send you his stream
+  // peerjs on event 'stream', partner peer send you his stream so add element to video grid
   call.on("stream", (ptnrStream) => {
     addVideoElement(ptnrPeerId, ptnrStream);
   });

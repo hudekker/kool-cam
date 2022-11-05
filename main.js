@@ -37,6 +37,8 @@ if (boolRefresh) {
 
   updateHelpModalText();
 
+  const user = prompt("Enter your name");
+
   // Partners initiate request to host
   // think about a timeout loop every 3 seconds if ptnr arrives before host?
   if (!boolHost) {
@@ -58,18 +60,21 @@ if (boolRefresh) {
     }
   });
 
+  // Set enter as the default submit
   myMessage.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && myMessage.value.length !== 0) {
       sendMessage();
     }
   });
 
+  // Go to video main-left
   backBtn.addEventListener("click", () => {
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
     document.querySelector(".header-back").classList.toggle("display-none");
   });
 
+  // Go to chat main-left
   showChat.addEventListener("click", () => {
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
@@ -77,9 +82,6 @@ if (boolRefresh) {
   });
 
   // Modals
-  // formHelp.addEventListener("submit", function (e) {
-  //   e.preventDefault();
-  // });
   formVideo.addEventListener("submit", function (e) {
     e.preventDefault();
   });
@@ -90,15 +92,17 @@ if (boolRefresh) {
   });
 
   // Catch the exit event and send it all your ptnrs
-  const beforeUnloadHandler = (event) => {
-    event.preventDefault();
-    document.URL = document.URL.split("#")[0];
-    conns.forEach((el) => el.send({ key: "close", val: myPeer.id }));
+  window.addEventListener(
+    "beforeunload",
+    (event) => {
+      event.preventDefault();
+      document.URL = document.URL.split("#")[0];
+      conns.forEach((el) => el.send({ key: "close", val: myPeer.id }));
 
-    if (boolHost) {
-      conns.forEach((el) => el.send({ key: "host-close", val: myPeer.id }));
-    }
-  };
-
-  window.addEventListener("beforeunload", beforeUnloadHandler, { capture: true });
+      if (boolHost) {
+        conns.forEach((el) => el.send({ key: "host-close", val: myPeer.id }));
+      }
+    },
+    { capture: true }
+  );
 })();
