@@ -1,3 +1,49 @@
+// Open the video modal
+// body.addEventListener("click", (event) => {
+// Handle click on Modal Video Open
+// let pName = document.querySelector("p.name");
+// if ((event.target.tagName == "P" && event.target.classList.contains("name")) || (event.target.parentElement.tagName == "P" && event.target.parentElement.srcElement.classList.contains("name"))) {
+//   handleModalVideoOpen(event);
+// }
+// });
+
+// Close the modals (click on the x)
+modalHelp.querySelector("#modal-help-close").onclick = function () {
+  modalHelp.classList.add("modal-hide");
+};
+modalVideo.querySelector("#modal-video-close").onclick = function () {
+  modalVideo.classList.add("modal-hide");
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = (event) => {
+  event.target.id == "modal-help" ? modalHelp.classList.add("modal-hide") : null;
+  event.target.id == "modal-video" ? modalVideo.classList.add("modal-hide") : null;
+};
+
+// OK Video modal button click
+btnModalVideoOk.onclick = (event) => {
+  handleModalVideoSubmit(event);
+};
+
+// Hangup
+btnHangup.addEventListener("click", (event) => {
+  conns
+    .filter((el) => el.peer !== myPeer.id)
+    .forEach((conn) => {
+      // If you are host ALSO do a host-close
+      if (boolHost) {
+        conn.send({ key: "host-close", val: myPeer.id });
+      }
+      conn.send({ key: "close", val: myPeer.id });
+    });
+
+  // Close the video modal
+  modalVideo.classList.add("modal-hide");
+
+  // open(location, "_self").close();
+});
+
 const handleModalVideoOpen = (event) => {
   clickPeerId = event.currentTarget.parentElement.dataset.peerId;
   // await sleep(2000);
@@ -5,8 +51,8 @@ const handleModalVideoOpen = (event) => {
   // Prepopulate the name
   let boolMe = clickPeerId === myPeer.id ? true : false;
 
-  let name = document.querySelector(`div[data-peer-id="${clickPeerId}"] span`).innerText;
-  document.querySelector("#my-nickname").value = name;
+  myNickname = document.querySelector(`div[data-peer-id="${clickPeerId}"] span`).innerText;
+  document.querySelector("#my-nickname").value = myNickname;
   modalVideo.classList.remove("modal-hide");
   document.querySelector("#my-nickname").focus();
 

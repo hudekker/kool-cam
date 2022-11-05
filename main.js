@@ -50,6 +50,39 @@ if (boolRefresh) {
   // Handle video request events
   myPeer.on("call", receiveVideoRequest);
 
+  // Send text message
+  btnSendMsg.addEventListener("click", (e) => {
+    // Update messages
+    if (myMessage.value.length !== 0) {
+      sendMessage();
+    }
+  });
+
+  myMessage.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && myMessage.value.length !== 0) {
+      sendMessage();
+    }
+  });
+
+  backBtn.addEventListener("click", () => {
+    document.querySelector(".main-right").classList.toggle("sm-none");
+    document.querySelector(".main-left").classList.toggle("sm-none");
+
+    // document.querySelector(".main-left").style.display = "flex";
+    // document.querySelector(".main-left").style.flex = "1";
+    // document.querySelector(".main-right").style.display = "none";
+    document.querySelector(".header-back").style.display = "none";
+  });
+
+  showChat.addEventListener("click", () => {
+    document.querySelector(".main-right").classList.toggle("sm-none");
+    document.querySelector(".main-left").classList.toggle("sm-none");
+    // document.querySelector(".main-right").style.display = "flex";
+    // document.querySelector(".main-right").style.flex = "1";
+    // document.querySelector(".main-left").style.display = "none";
+    document.querySelector(".header-back").style.display = "block";
+  });
+
   // Modals
   // formHelp.addEventListener("submit", function (e) {
   //   e.preventDefault();
@@ -61,52 +94,6 @@ if (boolRefresh) {
   // Open the help modal
   btnHelp.addEventListener("click", () => {
     modalHelp.classList.remove("modal-hide");
-  });
-
-  // Open the video modal
-  // body.addEventListener("click", (event) => {
-  // Handle click on Modal Video Open
-  // let pName = document.querySelector("p.name");
-  // if ((event.target.tagName == "P" && event.target.classList.contains("name")) || (event.target.parentElement.tagName == "P" && event.target.parentElement.srcElement.classList.contains("name"))) {
-  //   handleModalVideoOpen(event);
-  // }
-  // });
-
-  // Close the modals (click on the x)
-  modalHelp.querySelector("#modal-help-close").onclick = function () {
-    modalHelp.classList.add("modal-hide");
-  };
-  modalVideo.querySelector("#modal-video-close").onclick = function () {
-    modalVideo.classList.add("modal-hide");
-  };
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = (event) => {
-    event.target.id == "modal-help" ? modalHelp.classList.add("modal-hide") : null;
-    event.target.id == "modal-video" ? modalVideo.classList.add("modal-hide") : null;
-  };
-
-  // OK Video modal button click
-  btnModalVideoOk.onclick = (event) => {
-    handleModalVideoSubmit(event);
-  };
-
-  // Hangup
-  btnHangup.addEventListener("click", (event) => {
-    conns
-      .filter((el) => el.peer !== myPeer.id)
-      .forEach((conn) => {
-        // If you are host ALSO do a host-close
-        if (boolHost) {
-          conn.send({ key: "host-close", val: myPeer.id });
-        }
-        conn.send({ key: "close", val: myPeer.id });
-      });
-
-    // Close the video modal
-    modalVideo.classList.add("modal-hide");
-
-    // open(location, "_self").close();
   });
 
   // Catch the exit event and send it all your ptnrs

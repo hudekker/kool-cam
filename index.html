@@ -14,31 +14,35 @@
 
 <body>
   <div class="chat-heading">
+    <div class="header-back">
+      <i class="fas fa-angle-left"></i>
+    </div>
     <h1 class="title" id="title">Kool . Cam</h1>
+
   </div>
   <div class="container">
     <div class="main-left">
       <div id="video-grid" class="video-grid"></div>
       <div class="video-btn-group">
-        <button id="stopVideo" class="btn">
+        <button id="stop-video" class="btn">
           <i class="fa fa-video-camera"></i>
         </button>
-        <button id="muteButton" class="btn">
+        <button id="mute-button" class="btn">
           <i class="fa fa-microphone"></i>
         </button>
-        <button id="showChat" class="btn">
+        <button id="show-chat" class="btn">
           <i class="fa fa-comment"></i>
         </button>
         <button id="btn-help" class="btn btn-help">?</button>
       </div>
     </div>
-    <div class="main-right">
+    <div class="main-right sm-none">
       <div class="chat-window">
-        <div class="messages"></div>
+        <div id="messages" class="messages"></div>
       </div>
       <div class="message-container">
-        <input id="chat-message" type="text" autocomplete="off" placeholder="Type message here...">
-        <button id="send" class="btn">
+        <input id="my-message" type="text" autocomplete="off" placeholder="Type message here...">
+        <button id="btn-send-msg" class="btn">
           <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
       </div>
@@ -117,14 +121,6 @@
         </ul>
       </div>
 
-      <!-- <div class="modal-hide">
-        <p>You may optionally enter your name (nickname) below</p>
-        <form id="form-help" class="form-control" action="">
-          <label for="input-name-help" class="form-label">Name</label>
-          <input id="input-name-help" class="form-input" autocomplete="off" />
-        </form>
-        <button id="btn-modal-help" class="btn-form-ok">OK</button>
-      </div> -->
     </div>
   </div>
 
@@ -189,7 +185,8 @@
   <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
   <script src="globals.js"></script>
   <script src="util.js"></script>
-  <script src="handlers.js"></script>
+  <!-- <script src="handlers.js"></script> -->
+  <script src="modals.js"></script>
   <script src="main.js"></script>
 </body>
 

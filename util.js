@@ -80,7 +80,6 @@ const updateHelpModalText = () => {
 };
 
 const addVideoElement = (peerId, stream) => {
-  console.log("inside addVideoElement");
   if (document.querySelector(`video[data-peer-id="${peerId}"]`)) {
     console.log("inside addVideoElement but return since = peerId");
     return;
@@ -126,14 +125,13 @@ const addVideoElement = (peerId, stream) => {
   p.classList.add("name");
 
   if (peerId == hostId) {
-    let nickname = peers.filter((el) => el.id === peerId)?.[0]?.nickname;
-    p.innerHTML = `<i class="fa-solid fa-ghost"></i> <span class='nickname'>${nickname}</span>`;
+    p.innerHTML = `<i class="fa-solid fa-ghost"></i> <span class='nickname'>Host</span>`;
   } else {
     // p.innerHTML = `<i class="fa-solid fa-user-secret"></i> Person #${numUser}`;
-    let nickname = peers.filter((el) => el.id === peerId)?.[0]?.nickname;
-    myNickname = nickname ? nickname : `Friend ${numOrder}`;
+    let nickname = getNickname(peers, peerId);
+    nickname = nickname ? nickname : `Friend ${numOrder}`;
 
-    p.innerHTML = `<i class="fa-solid fa-user"></i> <span class='nickname'>${myNickname}</span>`;
+    p.innerHTML = `<i class="fa-solid fa-user"></i> <span class='nickname'>${nickname}</span>`;
   }
 
   div.append(video);
@@ -142,6 +140,10 @@ const addVideoElement = (peerId, stream) => {
 
   video.addEventListener("loadedmetadata", () => video.play());
   p.addEventListener("click", handleModalVideoOpen);
+};
+
+const getNickname = (peers, id) => {
+  return peers.filter((el) => el.id === id)?.[0]?.nickname;
 };
 
 const removePeer = (peerId) => {
@@ -159,11 +161,13 @@ const connOpen = (conn) => {
     });
   });
 };
+
 const handleDataEvents = async (conn) => {
   // Wait for the connection to open
   if (conns.indexOf(conn) != -1) {
     debugger;
   }
+
   conns = [...conns.filter((el) => el.peer != conn.peer)];
   conns.push(conn);
   await connOpen(conn);
@@ -184,10 +188,6 @@ const handleDataEvents = async (conn) => {
 
         // Update display peers
         updateGridNickname();
-        // for (let i = 0; i < peers.length; i++) {
-        //   let span = document.querySelector(`div[data-peer-id="${peers[i].id}"] span`);
-        //   span ? (span.innerText = peers[i].nickname) : null;
-        // }
 
         let newPeers = [...peers.filter((x) => !oldPeers.includes(x))];
         newPeers = [...newPeers.filter((x) => x.id != myPeer.id)];
@@ -227,6 +227,11 @@ const handleDataEvents = async (conn) => {
 
         // If you are the host, update the peers array and send it out
         updatePeersNickname(id, nickname);
+        break;
+
+      case "msg":
+        debugger;
+        updateMsgList(getNickname(peers, conn.peer), data.val);
         break;
 
       default:
@@ -275,12 +280,6 @@ const receiveVideoRequest = (call) => {
   const ptnrPeerId = call.peer;
   let orderNum = peers.length;
   let ptnrNickname = `Friend ${orderNum}`;
-  // let ptnrNickname = call.metadata;
-
-  // debugger;
-  // if (call.metadata == "refresh") {
-  //   addVideoElement(call.peer, call._localStream);
-  // }
 
   // Keep track of peers, this is sent by host to peers on data requests
   if (boolHost) {
@@ -311,4 +310,24 @@ const updateGridNickname = () => {
     let span = document.querySelector(`div[data-peer-id="${peers[i].id}"] span`);
     span ? (span.innerText = peers[i].nickname) : null;
   }
+};
+
+const sendMessage = () => {
+  // Send this message to all participants
+  conns.forEach((el) => el.send({ key: "msg", val: myMessage.value }));
+
+  // Update display of messages
+  updateMsgList(getNickname(peers, myPeer.id), myMessage.value);
+
+  // Reset
+  myMessage.value = "";
+};
+
+const updateMsgList = (user, msg) => {
+  messages.innerHTML =
+    messages.innerHTML +
+    `<div class="message">
+      <b><i class="far fa-user-circle"></i> <span> ${user}</span> </b>
+      <span>${msg}</span>
+      </div>`;
 };

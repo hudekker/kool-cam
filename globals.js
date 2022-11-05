@@ -24,6 +24,12 @@ let btnHangup = document.querySelector("#btn-hangup");
 let myNickname;
 let clickPeerId;
 
+let myMessage = document.querySelector("#my-message");
+let btnSendMsg = document.querySelector("#btn-send-msg");
+let messages = document.querySelector("#messages");
+const showChat = document.querySelector("#show-chat");
+const backBtn = document.querySelector(".header-back");
+
 const videoGrid = document.getElementById("video-grid");
 // let peers = new Map();
 let peers = [];
