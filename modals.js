@@ -26,23 +26,23 @@ btnModalVideoOk.onclick = (event) => {
   handleModalVideoSubmit(event);
 };
 
-// Hangup
-btnHangup.addEventListener("click", (event) => {
-  conns
-    .filter((el) => el.peer !== myPeer.id)
-    .forEach((conn) => {
-      // If you are host ALSO do a host-close
-      if (boolHost) {
-        conn.send({ key: "host-close", val: myPeer.id });
-      }
-      conn.send({ key: "close", val: myPeer.id });
-    });
+// // Hangup
+// btnHangup.addEventListener("click", (event) => {
+//   conns
+//     .filter((el) => el.peer !== myPeer.id)
+//     .forEach((conn) => {
+//       // If you are host ALSO do a host-close
+//       if (boolHost) {
+//         conn.send({ key: "host-close", val: myPeer.id });
+//       }
+//       conn.send({ key: "close", val: myPeer.id });
+//     });
 
-  // Close the video modal
-  modalVideo.classList.add("modal-hide");
+//   // Close the video modal
+//   modalVideo.classList.add("modal-hide");
 
-  // open(location, "_self").close();
-});
+//   // open(location, "_self").close();
+// });
 
 const handleModalVideoOpen = (event) => {
   clickPeerId = event.currentTarget.parentElement.dataset.peerId;

@@ -45,12 +45,13 @@
   color: var(--main-light);
 }
 
-.header-back {
+.btn-back {
   color: var(--dracula-green);
   font-size: 2rem;
   margin-right: 10px;
   font-family: "Creepster", cursive;
 }
+
 
 /* h1 {
   text-align: center;
@@ -121,10 +122,28 @@
   text-align: center;
   width: 80px;
   font-size: 1.5rem;
+  border: solid black;
   box-shadow: 0.5px 0.5px 1px var(--dracula-dark-black);
   font-family: "Creepster", cursive;
-  background-color: var(--dracula-orange);
-  color: var(--dracula-black)
+  background-color: var(--dracula-yellow);
+  color: var(--dracula-black);
+}
+
+.btn.btn-on {
+  background-color: var(--dracula-green);
+}
+
+.btn.btn-off,
+.btn.btn-on.btn-off {
+  background-color: var(--dracula-red);
+}
+
+.btn-hangup {
+  /* padding: 5px 10px;
+  border-radius: 20px; */
+  background-color: var(--dracula-red);
+  color: var(--dracula-white);
+
 }
 
 /* .btn-help {
@@ -186,6 +205,7 @@ body {
   letter-spacing: 1px;
   border-radius: 10px;
   padding: 5px;
+  margin-left: 10px;
   text-align: center;
 }
 
@@ -198,7 +218,8 @@ p.name {
 .video-btn-group {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .add-user {
@@ -371,12 +392,7 @@ input:checked+.slider:before {
   margin-bottom: 0;
 }
 
-.btn-hangup {
-  padding: 5px 10px;
-  border-radius: 20px;
-  background-color: var(--dracula-red);
-  color: var(--dracula-white);
-}
+
 
 .modal-video-top-line {
   display: flex;
@@ -388,7 +404,7 @@ h3.inline {
   display: inline-block;
 }
 
-#show-chat {
+#btn-show-chat {
   display: none;
   justify-content: center;
   align-items: center;
@@ -438,7 +454,7 @@ h3.inline {
     width: 90vw;
   } */
 
-  #show-chat {
+  #btn-show-chat {
     display: flex;
     justify-content: center;
     align-items: center;

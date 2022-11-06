@@ -66,18 +66,68 @@ if (boolRefresh) {
     }
   });
 
+  btnVideo.addEventListener("click", (e) => {
+    let bool = document.querySelector("#btn-video").classList.contains("btn-off");
+    let videoTracks = myStream.getVideoTracks();
+
+    // If it's off, then turn it on, otherwise turn it off
+    if (bool) {
+      videoTracks.forEach((track) => (track.enabled = true));
+    } else {
+      videoTracks.forEach((track) => (track.enabled = false));
+    }
+
+    document.querySelector("#btn-video").classList.toggle("btn-off");
+  });
+
+  btnMic.addEventListener("click", (e) => {
+    let bool = document.querySelector("#btn-mic").classList.contains("btn-off");
+    let audioTracks = myStream.getAudioTracks();
+
+    // If it's off, then turn it on, otherwise turn it off
+    if (bool) {
+      audioTracks.forEach((track) => (track.enabled = true));
+    } else {
+      audioTracks.forEach((track) => (track.enabled = false));
+    }
+
+    document.querySelector("#btn-mic").classList.toggle("btn-off");
+  });
+
+  // Hangup
+  btnAddParticipant.addEventListener("click", (e) => {
+    let link = `https://kool.cam/#${hostId}`;
+    if (window.origin == "http://localhost:8000") {
+      link = `http://localhost:8000/kool-cam/index.html#${hostId}`;
+    }
+    prompt(`Copy this link and send it to friends you want to meet with`, link);
+  });
+
+  // Hangup
+  btnHangup.addEventListener("click", (event) => {
+    conns
+      .filter((el) => el.peer !== myPeer.id)
+      .forEach((conn) => {
+        // If you are host ALSO do a host-close
+        if (boolHost) {
+          conn.send({ key: "host-close", val: myPeer.id });
+        }
+        conn.send({ key: "close", val: myPeer.id });
+      });
+  });
+
   // Go to video main-left
-  backBtn.addEventListener("click", () => {
+  btnBack.addEventListener("click", () => {
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
-    document.querySelector(".header-back").classList.toggle("display-none");
+    document.querySelector(".btn-back").classList.toggle("display-none");
   });
 
   // Go to chat main-left
-  showChat.addEventListener("click", () => {
+  btnShowChat.addEventListener("click", () => {
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
-    document.querySelector(".header-back").classList.toggle("display-none");
+    document.querySelector(".btn-back").classList.toggle("display-none");
   });
 
   // Modals

@@ -14,7 +14,7 @@
 
 <body>
   <div class="chat-heading">
-    <div class="header-back display-none">
+    <div class="btn-back display-none">
       <i class="fas fa-angle-left"></i>
     </div>
     <h1 class="title" id="title">Kool . Cam</h1>
@@ -24,16 +24,21 @@
     <div class="main-left">
       <div id="video-grid" class="video-grid"></div>
       <div class="video-btn-group">
-        <button id="stop-video" class="btn">
+        <button id="btn-video" class="btn btn-on">
           <i class="fa fa-video-camera"></i>
         </button>
-        <button id="mute-button" class="btn">
+        <button id="btn-mic" class="btn btn-on">
           <i class="fa fa-microphone"></i>
         </button>
-        <button id="show-chat" class="btn">
+        <button id="btn-show-chat" class="btn">
           <i class="fa fa-comment"></i>
         </button>
+        <button id="btn-add-participant" class="btn">
+          <i class="fas fa-user-plus"></i>
+        </button>
         <button id="btn-help" class="btn btn-help">?</button>
+        <button id="btn-hangup" class="btn btn-hangup" type="button"><i class="fa-solid fa-phone-slash"></i></button>
+
       </div>
     </div>
     <div class="main-right sm-none">
@@ -129,7 +134,7 @@
     <div class="modal-content">
       <div class="modal-video-top-line">
         <h3 class="inline">Video</h3>
-        <button id="btn-hangup" class="btn-hangup" type="button">Hangup</button>
+        <!-- <button id="btn-hangup" class="btn-hangup" type="button">Hangup</button> -->
         <span id="modal-video-close" class="close">&times;</span>
       </div>
       <form id="form-video" class="form-control" action="">
