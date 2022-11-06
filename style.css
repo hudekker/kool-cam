@@ -471,14 +471,14 @@ h3.inline {
 
   .box:nth-last-child(n + 3) .video,
   .box:nth-last-child(n + 3)~.box .video {
-    width: 50vw;
+    /* width: 50vw; */
     height: 25vh;
   }
 
   .box:nth-last-child(n + 4) .video,
   .box:nth-last-child(n + 4)~.box .video {
-    width: 40vw;
-    height: 40vh;
+    width: 45vw;
+    height: 37vh;
   }
 
   .title {
