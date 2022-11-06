@@ -94,7 +94,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .title {
@@ -489,9 +489,14 @@ h3.inline {
     margin: 0;
   }
 
+  .chat-heading {
+    margin-bottom: 0;
+  }
+
   .btn {
     margin: 0 5px;
     padding: 5px;
+    width: 50px;
   }
 
   .message-container>input {
