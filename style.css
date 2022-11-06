@@ -129,6 +129,23 @@
   color: var(--dracula-black);
 }
 
+.btn-flash {
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes flash {
+  from {
+    border: solid black;
+  }
+
+  to {
+    border: solid var(--dracula-white);
+  }
+}
+
 .btn.btn-on {
   background-color: var(--dracula-green);
 }

@@ -118,6 +118,7 @@ if (boolRefresh) {
 
   // Go to video main-left
   btnBack.addEventListener("click", () => {
+    btnShowChat.classList.remove("btn-flash");
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
     document.querySelector(".btn-back").classList.toggle("display-none");
@@ -125,6 +126,7 @@ if (boolRefresh) {
 
   // Go to chat main-left
   btnShowChat.addEventListener("click", () => {
+    btnShowChat.classList.remove("btn-flash");
     document.querySelector(".main-right").classList.toggle("sm-none");
     document.querySelector(".main-left").classList.toggle("sm-none");
     document.querySelector(".btn-back").classList.toggle("display-none");

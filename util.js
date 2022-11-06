@@ -231,7 +231,7 @@ const handleDataEvents = async (conn) => {
         break;
 
       case "msg":
-        debugger;
+        btnShowChat.classList.add("btn-flash");
         updateMsgList(getNickname(peers, conn.peer), data.val);
         break;
 
