@@ -27,6 +27,48 @@
   font-family: "Poppins", sans-serif;
 }
 
+.intro {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: var(--dracula-green);
+}
+
+/* .choose-title {
+  height: 40vh;
+} */
+
+.choose-group {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 50vh;
+}
+
+.btn-circle {
+  /* color: lime; */
+  border: solid var(--dracula-green);
+  border-radius: 50%;
+  margin: 20px;
+}
+
+.btn-circle > i {
+  padding: 20px;
+  font-size: 2rem;
+}
+
+.btn-circle:hover {
+  border: solid var(--dracula-white);
+  background-color: var(--dracula-green);
+}
+
+.btn-circle > i:hover {
+  color: var(--dracula-black);
+}
+
 .display-none {
   display: none;
 }
@@ -41,7 +83,7 @@
   background-color: var(--main-darklg);
 }
 
-.logo>h3 {
+.logo > h3 {
   color: var(--main-light);
 }
 
@@ -51,7 +93,6 @@
   margin-right: 10px;
   font-family: "Creepster", cursive;
 }
-
 
 /* h1 {
   text-align: center;
@@ -160,7 +201,6 @@
   border-radius: 20px; */
   background-color: var(--dracula-red);
   color: var(--dracula-white);
-
 }
 
 /* .btn-help {
@@ -264,19 +304,19 @@ p.name {
   flex-direction: column;
 }
 
-.message>b {
+.message > b {
   color: #eeeeee;
   display: flex;
   align-items: center;
   text-transform: capitalize;
 }
 
-.message>b>i {
+.message > b > i {
   margin-right: 0.7rem;
   font-size: 1.5rem;
 }
 
-.message>span {
+.message > span {
   background-color: #eeeeee;
   margin: 1rem 0;
   padding: 1rem;
@@ -290,7 +330,7 @@ p.name {
   justify-content: center;
 }
 
-.message-container>input {
+.message-container > input {
   height: 50px;
   flex: 1;
   font-size: 1rem;
@@ -303,7 +343,7 @@ p.name {
   outline: none;
 }
 
-#form-msg>button {
+#form-msg > button {
   background: var(--dracula-orange);
   border: none;
   padding: 0 1rem;
@@ -368,19 +408,19 @@ li#ptnr-link2 {
   transition: 0.4s;
 }
 
-input:checked+.slider {
+input:checked + .slider {
   background-color: var(--dracula-black);
 }
 
-input+.slider {
+input + .slider {
   background-color: var(--spring-green);
 }
 
-input:focus+.slider {
+input:focus + .slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);
@@ -409,8 +449,6 @@ input:checked+.slider:before {
   margin-bottom: 0;
 }
 
-
-
 .modal-video-top-line {
   display: flex;
   justify-content: space-between;
@@ -429,17 +467,16 @@ h3.inline {
 
 /* width is 70vw */
 .box:nth-last-child(n + 3) .video,
-.box:nth-last-child(n + 3)~.box .video {
+.box:nth-last-child(n + 3) ~ .box .video {
   height: 40vh;
 }
 
 .box:nth-last-child(n + 2) .video,
-.box:nth-last-child(n + 2)~.box .video {
+.box:nth-last-child(n + 2) ~ .box .video {
   width: 33vw;
 }
 
 @media only screen and (max-width: 1440px) {
-
   /* width is 100vw */
   .main-right {
     flex: 1;
@@ -457,13 +494,13 @@ h3.inline {
   }
 
   .box:nth-last-child(n + 2) .video,
-  .box:nth-last-child(n + 2)~.box .video {
+  .box:nth-last-child(n + 2) ~ .box .video {
     width: 40vw;
     height: 80vh;
   }
 
   .box:nth-last-child(n + 3) .video,
-  .box:nth-last-child(n + 3)~.box .video {
+  .box:nth-last-child(n + 3) ~ .box .video {
     height: 40vh;
   }
 
@@ -479,21 +516,25 @@ h3.inline {
 }
 
 @media only screen and (max-width: 760px) {
-
+  .choose-title {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px;
+  }
   .box:nth-last-child(n + 2) .video,
-  .box:nth-last-child(n + 2)~.box .video {
+  .box:nth-last-child(n + 2) ~ .box .video {
     width: 80vw;
     height: 40vh;
   }
 
   .box:nth-last-child(n + 3) .video,
-  .box:nth-last-child(n + 3)~.box .video {
+  .box:nth-last-child(n + 3) ~ .box .video {
     /* width: 50vw; */
     height: 25vh;
   }
 
   .box:nth-last-child(n + 4) .video,
-  .box:nth-last-child(n + 4)~.box .video {
+  .box:nth-last-child(n + 4) ~ .box .video {
     width: 45vw;
     height: 37vh;
   }
@@ -516,7 +557,7 @@ h3.inline {
     width: 50px;
   }
 
-  .message-container>input {
+  .message-container > input {
     height: 40px;
   }
 }

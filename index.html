@@ -13,14 +13,23 @@
 </head>
 
 <body>
-  <div class="chat-heading">
+  <div id="intro-choose" class="intro choose">
+    <h1 class="choose-title">Please choose Chat, Phone, or Video Call</h1>
+    <div class="choose-group">
+      <div id="btn-choose-chat" class="btn-circle"><i class="fa-regular fa-comment"></i></div>
+      <div id="btn-choose-phone" class="btn-circle"><i class="fa-solid fa-phone"></i></div>
+      <div id="btn-choose-video" class="btn-circle"><i class="fa-solid fa-video"></i></div>
+    </div>
+  </div>
+
+  <div id="chat-heading" class="chat-heading display-none">
     <div class="btn-back display-none">
       <i class="fas fa-angle-left"></i>
     </div>
     <h1 class="title" id="title">Kool . Cam</h1>
 
   </div>
-  <div class="container">
+  <div id="container" class="container display-none">
     <div class="main-left">
       <div id="video-grid" class="video-grid"></div>
       <div class="video-btn-group">

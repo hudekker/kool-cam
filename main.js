@@ -66,6 +66,17 @@ if (boolRefresh) {
     }
   });
 
+  //**** */
+  btnChooseVideo.addEventListener("click", (e) => {
+    let introChoose = document.querySelector("#intro-choose");
+    let chatHeading = document.querySelector("#chat-heading");
+    let container = document.querySelector("#container");
+
+    introChoose.classList.add("display-none");
+    chatHeading.classList.remove("display-none");
+    container.classList.remove("display-none");
+  });
+
   btnVideo.addEventListener("click", (e) => {
     let bool = document.querySelector("#btn-video").classList.contains("btn-off");
     let videoTracks = myStream.getVideoTracks();
