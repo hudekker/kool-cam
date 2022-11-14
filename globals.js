@@ -24,17 +24,21 @@ let btnModalVideoOk = document.querySelector("#btn-modal-video-ok");
 let btnChooseChat = document.querySelector("#btn-choose-chat");
 let btnChoosePhone = document.querySelector("#btn-choose-phone");
 let btnChooseVideo = document.querySelector("#btn-choose-video");
+let btnHangup = document.querySelector("#btn-hangup");
+let btnBack = document.querySelector(".btn-back");
+let btnShowChat = document.querySelector("#btn-show-chat");
+let introChoose = document.querySelector("#intro-choose");
+let chatHeading = document.querySelector("#chat-heading");
+let container = document.querySelector("#container");
 let formHelp = document.querySelector("#form-help");
 let formVideo = document.querySelector("#form-video");
-let btnHangup = document.querySelector("#btn-hangup");
 let myNickname;
 let clickPeerId;
+let commType;
 
 let myMessage = document.querySelector("#my-message");
 let btnSendMsg = document.querySelector("#btn-send-msg");
 let messages = document.querySelector("#messages");
-const btnShowChat = document.querySelector("#btn-show-chat");
-const btnBack = document.querySelector(".btn-back");
 
 const videoGrid = document.getElementById("video-grid");
 // let peers = new Map();

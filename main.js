@@ -8,48 +8,88 @@ boolRefresh =
 if (boolRefresh) {
   // window.location.href = document.URL.split("#")[0];
 }
-// Use async wrapper because there are awaits
-(async () => {
-  // Initialize your own peer object and get the host id
-  await getHostIdMyPeerObj();
 
-  console.log(`Host Id = ${hostId}`);
-  console.log(`My peer Id = ${myPeer.id}`);
-  console.log(`boolHost = ${boolHost}`);
+const mainThread = async (commType) => {
+  introChoose.classList.add("display-none");
+  let boolStream = false;
 
-  // Open up your video stream and add it to the screen
-  myStream = await navigator.mediaDevices.getUserMedia({
-    // video: { width: 1280, height: 720 },
-    video: {
-      width: { min: 1024, ideal: 1280, max: 1920 },
-      height: { min: 576, ideal: 720, max: 1080 },
-    },
-    audio: true,
-    controls: true,
-  });
+  switch (commType) {
+    case "chat":
+      // btnBack.classList.add("display-none");
+      container.classList.remove("display-none");
+      chatHeading.classList.remove("display-none");
 
-  myNickname = prompt("Enter your name");
+      document.querySelector("#main-left").classList.add("display-none");
+      document.querySelector("#main-right").classList.remove("display-none", "sm-none");
+      document.querySelector("#main-right").classList.add("chat-only");
+      boolStream = false;
+      break;
+    case "phone":
+      chatHeading.classList.remove("display-none");
+      container.classList.remove("display-none");
 
-  if (boolHost) {
-    peers.push({ id: myPeer.id, nickname: myNickname, order: 0, host: true });
+      boolStream = true;
+      myStream = await navigator.mediaDevices.getUserMedia({
+        // video: { width: 1280, height: 720 },
+        video: false,
+        audio: true,
+        controls: true,
+      });
+      break;
+    case "video":
+      chatHeading.classList.remove("display-none");
+      container.classList.remove("display-none");
+
+      boolStream = true;
+      myStream = await navigator.mediaDevices.getUserMedia({
+        // video: { width: 1280, height: 720 },
+        video: {
+          width: { min: 1024, ideal: 1280, max: 1920 },
+          height: { min: 576, ideal: 720, max: 1080 },
+        },
+        audio: true,
+        controls: true,
+      });
+      break;
+
+    default:
+      break;
   }
 
-  addVideoElement(myPeer.id, myStream);
+  // Open up your video stream and add it to the screen
+
+  boolStream ? addVideoElement(myPeer.id, myStream) : null;
 
   updateHelpModalText();
+
+  // Handle video request events
+  boolStream ? myPeer.on("call", receiveVideoRequest) : null;
 
   // Partners initiate request to host
   // think about a timeout loop every 3 seconds if ptnr arrives before host?
   if (!boolHost) {
     sendDataRequest(myPeer, hostId);
-    sendVideoRequest(myPeer, hostId);
+    boolStream ? sendVideoRequest(myPeer, hostId) : null;
   }
+};
+
+// Use async wrapper because there are awaits
+(async () => {
+  myNickname = prompt("Enter your name");
+
+  // Initialize your own peer object and get the host id
+  await getHostIdMyPeerObj();
+
+  // console.log(`Host Id = ${hostId}`);
+  // console.log(`My peer Id = ${myPeer.id}`);
+  // console.log(`boolHost = ${boolHost}`);
 
   // Handle data request events
   myPeer.on("connection", handleDataEvents);
 
-  // Handle video request events
-  myPeer.on("call", receiveVideoRequest);
+  if (boolHost) {
+    peers.push({ id: myPeer.id, nickname: myNickname, order: 0, host: true });
+  }
 
   // Send text message
   btnSendMsg.addEventListener("click", (e) => {
@@ -66,15 +106,22 @@ if (boolRefresh) {
     }
   });
 
-  //**** */
-  btnChooseVideo.addEventListener("click", (e) => {
-    let introChoose = document.querySelector("#intro-choose");
-    let chatHeading = document.querySelector("#chat-heading");
-    let container = document.querySelector("#container");
+  // Chat only
+  btnChooseChat.addEventListener("click", async (e) => {
+    commType = "chat";
+    await mainThread(commType);
+  });
 
-    introChoose.classList.add("display-none");
-    chatHeading.classList.remove("display-none");
-    container.classList.remove("display-none");
+  // Phone Call
+  btnChoosePhone.addEventListener("click", async (e) => {
+    commType = "phone";
+    await mainThread(commType);
+  });
+
+  // Video Call
+  btnChooseVideo.addEventListener("click", async (e) => {
+    commType = "video";
+    await mainThread(commType);
   });
 
   btnVideo.addEventListener("click", (e) => {
