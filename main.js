@@ -19,6 +19,7 @@ const mainThread = async (commType) => {
       container.classList.remove("display-none");
       chatHeading.classList.remove("display-none");
 
+      document.querySelector("#chat-only-btn-group").classList.remove("display-none");
       document.querySelector("#main-left").classList.add("display-none");
       document.querySelector("#main-right").classList.remove("display-none", "sm-none");
       document.querySelector("#main-right").classList.add("chat-only");
@@ -198,6 +199,16 @@ const mainThread = async (commType) => {
   // Open the help modal
   btnHelp.addEventListener("click", () => {
     modalHelp.classList.remove("modal-hide");
+  });
+
+  btnAddParticipant2.addEventListener("click", () => {
+    btnAddParticipant.click();
+  });
+  btnHelp2.addEventListener("click", () => {
+    btnHelp.click();
+  });
+  btnHangup2.addEventListener("click", () => {
+    btnHangup.click();
   });
 
   // Catch the exit event and send it all your ptnrs

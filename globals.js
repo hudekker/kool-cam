@@ -35,6 +35,9 @@ let formVideo = document.querySelector("#form-video");
 let myNickname;
 let clickPeerId;
 let commType;
+let btnAddParticipant2 = document.querySelector("#btn-add-participant-2");
+let btnHelp2 = document.querySelector("#btn-help-2");
+let btnHangup2 = document.querySelector("#btn-hangup-2");
 
 let myMessage = document.querySelector("#my-message");
 let btnSendMsg = document.querySelector("#btn-send-msg");
