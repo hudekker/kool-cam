@@ -106,6 +106,9 @@
   margin: auto;
   display: flex;
   width: 100vw;
+
+
+  justify-content: center;
   /* height: 90vh; */
 }
 
@@ -127,6 +130,8 @@
   flex-direction: column;
   flex: 0.3;
   background-color: #242f41;
+
+  max-width: 800px;
 }
 
 .main-right.chat-only {

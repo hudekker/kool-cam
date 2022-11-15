@@ -173,6 +173,8 @@ const mainThread = async (commType) => {
         }
         conn.send({ key: "close", val: myPeer.id });
       });
+
+    myStream ? myStream.getVideoTracks()[0].stop() : null;
   });
 
   // Go to video main-left
