@@ -120,6 +120,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-left: 20px;
 }
 
 .main-right {
@@ -130,8 +131,6 @@
   flex-direction: column;
   flex: 0.3;
   background-color: #242f41;
-
-  max-width: 800px;
 }
 
 .main-right.chat-only {
@@ -250,10 +249,22 @@ body {
   flex-wrap: wrap;
 }
 
+.video-grid.phone {
+  flex-direction: column;
+}
+
 .box {
   display: flex;
   flex-direction: column;
   position: relative;
+  border: solid 5px var(--dracula-green);
+  border-radius: 10px;
+}
+
+.box.phone {
+  flex-direction: row-reverse;
+  width: 500px;
+  padding: 10px;
 }
 
 /* .box:first-child:nth-last-child(n + 3) .video,
@@ -267,13 +278,34 @@ body {
 
 .video {
   object-fit: cover;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   height: 80vh;
   width: 70vw;
-  border: solid 5px var(--dracula-green);
+  /* border: solid 5px var(--dracula-green); */
 }
 
-.name {
+.video.phone {
+  height: 50px !important;
+  width: 200px !important;
+
+}
+
+/* .name {
+  background-color: var(--dracula-light-blue);
+  color: var(--dracula-black);
+  font-size: 18px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 10px;
+  text-align: center;
+} */
+
+p.name {
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+
   background-color: var(--dracula-light-blue);
   color: var(--dracula-black);
   font-size: 18px;
@@ -284,10 +316,14 @@ body {
   text-align: center;
 }
 
-p.name {
-  cursor: pointer;
-  position: absolute;
-  left: 10px;
+p.name.phone {
+  margin-top: 0;
+  margin-bottom: 0;
+  position: initial;
+  left: initial;
+  margin-left: 0;
+  margin-right: 10px;
+  flex: 1;
 }
 
 .video-btn-group {

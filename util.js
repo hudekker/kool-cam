@@ -109,11 +109,13 @@ const addVideoElement = (peerId, stream) => {
   div.dataset.peerId = peerId;
   div.dataset.order = numOrder;
   div.classList.add("box");
+  commType = "phone" ? div.classList.add("phone") : null;
 
   const video = document.createElement("video");
   video.srcObject = stream;
   video.dataset.peerId = peerId;
   video.classList.add("video");
+  commType = "phone" ? video.classList.add("phone") : null;
   video.controls = true;
   video.setAttribute("playsinline", true);
   video.muted = false;
@@ -123,6 +125,8 @@ const addVideoElement = (peerId, stream) => {
 
   const p = document.createElement("p");
   p.classList.add("name");
+  commType = "phone" ? p.classList.add("phone") : null;
+
   let nickname = getNickname(peers, peerId);
   nickname = nickname ? nickname : myNickname;
 

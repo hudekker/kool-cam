@@ -28,6 +28,9 @@ const mainThread = async (commType) => {
     case "phone":
       chatHeading.classList.remove("display-none");
       container.classList.remove("display-none");
+      document.querySelector("#btn-video").classList.add("display-none");
+      document.querySelector("#btn-video").classList.add("display-none");
+      document.querySelector("#video-grid").classList.add("phone");
 
       boolStream = true;
       myStream = await navigator.mediaDevices.getUserMedia({
@@ -36,6 +39,9 @@ const mainThread = async (commType) => {
         audio: true,
         controls: true,
       });
+
+      // myStream.getVideoTracks()[0].stop();
+
       break;
     case "video":
       chatHeading.classList.remove("display-none");
@@ -104,6 +110,10 @@ const mainThread = async (commType) => {
   myMessage.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && myMessage.value.length !== 0) {
       sendMessage();
+
+      // const element = document.getElementById(id);
+      // myMessages.scrollTop = myMessages.scrollHeight;
+      myMessages.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }
   });
 

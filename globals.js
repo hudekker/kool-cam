@@ -40,6 +40,7 @@ let btnHelp2 = document.querySelector("#btn-help-2");
 let btnHangup2 = document.querySelector("#btn-hangup-2");
 
 let myMessage = document.querySelector("#my-message");
+let myMessages = document.querySelector("#messages");
 let btnSendMsg = document.querySelector("#btn-send-msg");
 let messages = document.querySelector("#messages");
 
